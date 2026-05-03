@@ -3,256 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thiziri Arour — Developer</title>
+  <title>Thiziri Arour — Data & AI Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg:        #0c0c0c;
-      --bg-1:      #111111;
-      --bg-2:      #161616;
-      --border:    #1f1f1f;
-      --border-h:  #2e2e2e;
-      --green:     #4ade80;
-      --green-d:   #16a34a;
-      --amber:     #fbbf24;
-      --blue:      #60a5fa;
-      --purple:    #a78bfa;
-      --red:       #f87171;
-      --text:      #d4d4d4;
-      --muted:     #737373;
-      --dim:       #3a3a3a;
-      --r:         6px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    /* dot grid */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
-      background-size: 28px 28px;
-      opacity: 0.35;
-    }
-    ::selection { background: rgba(74,222,128,0.2); }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-    section { padding: 88px 0; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 14px 0; transition: background .3s, border-color .3s;
-    }
-    nav.scrolled { background: rgba(12,12,12,.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-    .nav-row { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'Fira Code', monospace; font-size: .9rem; color: var(--green); letter-spacing: .02em; }
-    .nav-logo span { color: var(--muted); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { font-size: .82rem; color: var(--muted); transition: color .2s; font-family: 'Fira Code', monospace; }
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── HERO ── */
-    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; }
-    .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 64px; align-items: center; }
-    .hero-comment { font-family: 'Fira Code', monospace; font-size: .8rem; color: var(--muted); margin-bottom: 20px; line-height: 2; }
-    .hero-comment .c { color: var(--green); }
-    .hero-comment .cm { color: #5a9f6e; }
-    h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 10px; color: #f0f0f0; }
-    .hero-role { font-family: 'Fira Code', monospace; font-size: clamp(.95rem, 2vw, 1.15rem); color: var(--muted); margin-bottom: 24px; }
-    .hero-role .cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--green); vertical-align: middle; margin-left: 2px; animation: blink 1s step-end infinite; }
-    @keyframes blink { 50% { opacity: 0; } }
-    .hero-bio { color: var(--muted); max-width: 500px; margin-bottom: 36px; line-height: 1.85; font-size: .95rem; }
-    .hero-bio strong { color: var(--text); font-weight: 500; }
-    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 22px; border-radius: var(--r); font-size: .82rem; font-weight: 500; transition: all .2s; cursor: pointer; border: none; font-family: 'Fira Code', monospace; }
-    .btn-green { background: var(--green); color: #0c0c0c; }
-    .btn-green:hover { background: #6ee79a; }
-    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border-h); }
-    .btn-ghost:hover { color: var(--text); border-color: var(--dim); }
-
-    /* photo */
-    .hero-photo { position: relative; }
-    .photo-frame {
-      width: 240px; height: 240px; border-radius: 50%;
-      border: 2px solid var(--green);
-      padding: 4px;
-      position: relative;
-      background: var(--bg-1);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .photo-frame img {
-      width: 100%; height: 100%; border-radius: 50%;
-      object-fit: cover; object-position: center top; filter: grayscale(15%);
-    }
-    /* initials fallback */
-    .photo-frame::after {
-      content: 'TA';
-      position: absolute; inset: 0; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Fira Code', monospace; font-size: 2.8rem;
-      font-weight: 600; color: var(--green); letter-spacing: .05em;
-      background: var(--bg-2);
-      /* img goes on top */
-      z-index: 0;
-    }
-    .photo-frame img { position: relative; z-index: 1; }
-    .photo-frame img[src=""] { display: none; }
-
-    /* ── SECTION HEADERS ── */
-    .sh { margin-bottom: 48px; }
-    .sh-label { font-family: 'Fira Code', monospace; font-size: .75rem; color: var(--green); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-    .sh-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--green); opacity: .4; }
-    h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #f0f0f0; letter-spacing: -.02em; }
-    h3 { font-weight: 600; color: #e0e0e0; }
-
-    /* ── ABOUT ── */
-    #about { background: var(--bg-1); }
-    .about-cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
-    .about-text p { color: var(--muted); margin-bottom: 16px; font-size: .95rem; line-height: 1.85; }
-    .about-text strong { color: var(--text); font-weight: 500; }
-    .lang-list { display: flex; flex-direction: column; gap: 8px; }
-    .lang-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r); font-size: .85rem; }
-    .lang-name { font-weight: 500; }
-    .lang-badge { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--green); }
-    .interests { margin-top: 20px; }
-    .interests-label { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .1em; }
-    .pills { display: flex; flex-wrap: wrap; gap: 6px; }
-    .pill { font-size: .78rem; padding: 4px 11px; border-radius: 4px; background: var(--bg-2); border: 1px solid var(--border); color: var(--muted); }
-
-    /* ── SKILLS ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
-    .skill-block { background: var(--bg-1); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; transition: border-color .2s; }
-    .skill-block:hover { border-color: var(--border-h); }
-    .skill-block-title { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag { font-family: 'Fira Code', monospace; font-size: .75rem; padding: 3px 9px; border-radius: 4px; background: var(--bg-2); border: 1px solid var(--border); color: var(--muted); transition: all .2s; }
-    .tag:hover { color: var(--green); border-color: var(--green-d); }
-
-    /* ── PROJECTS ── */
-    #projects { background: var(--bg-1); }
-    .projects-featured { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 20px; margin-bottom: 20px; }
-    .projects-other { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-    .proj-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 26px; transition: border-color .2s, background .2s; display: flex; flex-direction: column; }
-    .proj-card:hover { border-color: var(--border-h); background: var(--bg-1); }
-    .proj-card.featured:hover { border-color: rgba(74,222,128,.3); }
-    .proj-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
-    .proj-icon-link { display: flex; align-items: center; gap: 10px; }
-    .proj-icon { font-size: 1.3rem; }
-    .proj-gh { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: var(--r); border: 1px solid var(--border); color: var(--muted); transition: all .2s; }
-    .proj-gh:hover { border-color: var(--green-d); color: var(--green); }
-    .proj-gh svg { width: 15px; height: 15px; }
-    .proj-name { font-size: 1rem; font-weight: 600; color: #e8e8e8; margin-bottom: 4px; }
-    .proj-type { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--green); margin-bottom: 10px; }
-    .proj-desc { font-size: .88rem; color: var(--muted); line-height: 1.8; margin-bottom: 14px; flex: 1; }
-    .proj-features { list-style: none; margin-bottom: 14px; display: flex; flex-direction: column; gap: 5px; }
-    .proj-features li { font-size: .83rem; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; }
-    .proj-features li::before { content: '▸'; color: var(--green); flex-shrink: 0; font-size: .7rem; margin-top: 4px; }
-    .proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
-    .stag { font-family: 'Fira Code', monospace; font-size: .72rem; padding: 2px 8px; border-radius: 3px; background: rgba(74,222,128,.07); border: 1px solid rgba(74,222,128,.18); color: #6ee79a; }
-
-    /* ── EDUCATION ── */
-    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-    .edu-card { background: var(--bg-1); border: 1px solid var(--border); border-radius: var(--r); padding: 22px; transition: border-color .2s; }
-    .edu-card:hover { border-color: var(--border-h); }
-    .edu-year { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--green); margin-bottom: 8px; }
-    .edu-degree { font-size: .95rem; font-weight: 600; color: #e0e0e0; margin-bottom: 4px; line-height: 1.4; }
-    .edu-school { font-size: .83rem; color: var(--muted); margin-bottom: 4px; }
-    .edu-loc { font-size: .78rem; color: var(--dim); }
-
-    /* ── CERTIFICATES ── */
-    #certifications { background: var(--bg-1); }
-    .cert-section-title { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--amber); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-    .cert-section-title::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--amber); opacity: .4; }
-
-    /* diploma */
-    .diploma-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 48px; }
-    .diploma-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
-    .diploma-meta { display: flex; flex-direction: column; gap: 2px; }
-    .diploma-issuer { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--amber); }
-    .diploma-name { font-size: .95rem; font-weight: 600; color: #e0e0e0; }
-    .diploma-sub { font-size: .8rem; color: var(--muted); }
-    .diploma-open { font-family: 'Fira Code', monospace; font-size: .75rem; padding: 7px 14px; border-radius: var(--r); background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.25); color: var(--amber); transition: all .2s; display: inline-flex; align-items: center; gap: 6px; }
-    .diploma-open:hover { background: rgba(251,191,36,.14); }
-    .diploma-embed { width: 100%; height: 500px; display: block; border: none; }
-    .diploma-note { padding: 20px; background: var(--bg-2); font-family: 'Fira Code', monospace; font-size: .78rem; color: var(--muted); display: flex; align-items: center; gap: 10px; }
-    .diploma-note::before { content: 'ℹ'; color: var(--amber); font-size: 1rem; }
-
-    /* online certs */
-    .online-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
-    .online-row { display: flex; align-items: center; gap: 16px; padding: 13px 18px; background: var(--bg); border-bottom: 1px solid var(--border); transition: background .2s; cursor: pointer; flex-wrap: wrap; }
-    .online-row:last-child { border-bottom: none; }
-    .online-row:hover { background: var(--bg-2); }
-    .online-issuer-badge { font-family: 'Fira Code', monospace; font-size: .68rem; padding: 2px 8px; border-radius: 3px; white-space: nowrap; font-weight: 500; }
-    .badge-ibm    { background: rgba(96,165,250,.1); border: 1px solid rgba(96,165,250,.25); color: var(--blue); }
-    .badge-google { background: rgba(248,113,113,.1); border: 1px solid rgba(248,113,113,.25); color: var(--red); }
-    .badge-pearson{ background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.25); color: var(--purple); }
-    .badge-duke   { background: rgba(251,191,36,.1);  border: 1px solid rgba(251,191,36,.25);  color: var(--amber); }
-    .badge-edureka{ background: rgba(74,222,128,.1);  border: 1px solid rgba(74,222,128,.25);  color: var(--green); }
-    .online-name { flex: 1; font-size: .88rem; color: var(--text); }
-    .online-date { font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--muted); white-space: nowrap; }
-    .online-view { font-family: 'Fira Code', monospace; font-size: .72rem; padding: 4px 12px; border-radius: var(--r); background: transparent; border: 1px solid var(--border-h); color: var(--muted); transition: all .2s; white-space: nowrap; }
-    .online-row:hover .online-view { border-color: var(--green-d); color: var(--green); }
-
-    /* ── LIGHTBOX ── */
-    .lb { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.88); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity .25s; }
-    .lb.open { opacity: 1; pointer-events: all; }
-    .lb-inner { width: 100%; max-width: 880px; display: flex; flex-direction: column; }
-    .lb-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 12px; }
-    .lb-title { font-size: .85rem; color: var(--muted); font-family: 'Fira Code', monospace; flex: 1; }
-    .lb-actions { display: flex; gap: 8px; }
-    .lb-ext { font-family: 'Fira Code', monospace; font-size: .75rem; padding: 6px 12px; border-radius: var(--r); background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.25); color: var(--green); display: inline-flex; align-items: center; gap: 6px; }
-    .lb-close { width: 34px; height: 34px; border-radius: var(--r); background: var(--bg-2); border: 1px solid var(--border-h); color: var(--muted); cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all .2s; }
-    .lb-close:hover { color: var(--text); border-color: var(--dim); }
-    .lb-embed { width: 100%; height: 76vh; border: 1px solid var(--border); border-radius: var(--r); display: block; }
-
-    /* ── CONNECT ── */
-    #connect { text-align: center; }
-    .connect-inner { max-width: 600px; margin: 0 auto; }
-    .connect-inner p { color: var(--muted); margin-bottom: 40px; font-size: .95rem; }
-    .contact-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .contact-link { display: flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: var(--r); border: 1px solid var(--border); background: var(--bg-1); font-size: .83rem; color: var(--muted); transition: all .2s; font-family: 'Fira Code', monospace; }
-    .contact-link:hover { border-color: var(--green-d); color: var(--green); background: rgba(74,222,128,.05); }
-    .contact-link span { font-size: 1rem; }
-
-    /* ── FOOTER ── */
-    footer { padding: 24px 0; border-top: 1px solid var(--border); text-align: center; font-family: 'Fira Code', monospace; font-size: .75rem; color: var(--muted); }
-
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.on { opacity: 1; transform: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 760px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-photo { display: flex; justify-content: center; order: -1; }
-      .photo-frame { width: 180px; height: 180px; }
-      .about-cols { grid-template-columns: 1fr; }
-      .projects-featured { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      section { padding: 64px 0; }
-    }
-
-    /* GH icon inline */
-    .gh-icon { fill: currentColor; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
   <div class="wrap nav-row">
-    <span class="nav-logo"><span>~/</span>thiziri-arour</span>
+    <span class="nav-logo">THIZIRI<span class="nav-logo-dot">.</span>AROUR</span>
     <ul class="nav-links">
       <li><a href="#about">about</a></li>
       <li><a href="#skills">skills</a></li>
@@ -266,30 +28,43 @@
 
 <!-- HERO -->
 <section id="hero">
+  <span class="hero-bg-text" aria-hidden="true">DATA·AI</span>
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-comment">
-        <div><span class="cm">/*</span></div>
-        <div><span class="cm"> * Hello world — I'm</span></div>
-        <div><span class="cm"> */</span></div>
-      </div>
-      <h1>Thiziri Arour</h1>
-      <p class="hero-role" id="typed-role"><span class="cursor"></span></p>
+      <div class="hero-eyebrow">Data &amp; AI Engineer · Clermont-Ferrand</div>
+      <h1>
+        <span class="name-first">Thiziri</span>
+        <span class="name-last">Arour</span>
+      </h1>
+      <p class="hero-role" id="typed-role"></p>
       <p class="hero-bio">
         CS student with hands-on experience building <strong>full-stack systems</strong>,
         <strong>machine learning apps</strong>, and <strong>concurrent software</strong>.
         I like problems that require both algorithmic thinking and clean engineering.
         Based in <strong>Aubière, France</strong>.
       </p>
+      <div class="hero-chips">
+        <span class="hero-chip">Machine Learning</span>
+        <span class="hero-chip">Full-Stack Dev</span>
+        <span class="hero-chip">MLOps</span>
+        <span class="hero-chip">Algorithms</span>
+        <span class="hero-chip">Data Engineering</span>
+        <span class="hero-chip">AI Agents</span>
+      </div>
       <div class="hero-btns">
-        <a href="#projects" class="btn btn-green">view projects</a>
-        <a href="#connect" class="btn btn-ghost">get in touch</a>
-        <a href="assets/cv_arour_thiziri.pdf" download class="btn btn-ghost">download cv</a>
+        <a href="#projects" class="btn btn-ice">View Projects</a>
+        <a href="#connect" class="btn btn-ghost">Get in Touch</a>
+        <a href="assets/cv_arour_thiziri.pdf" download class="btn btn-ghost">Download CV</a>
       </div>
     </div>
     <div class="hero-photo">
-      <div class="photo-frame">
-        <img src="assets/photo.png" alt="Thiziri Arour" />
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="photo-ring-outer"></div>
+        <div class="photo-frame">
+          <div class="photo-initials" aria-hidden="true">TA</div>
+          <img src="assets/photo.png" alt="Thiziri Arour" onerror="this.style.display='none'" />
+        </div>
       </div>
     </div>
   </div>
@@ -299,10 +74,11 @@
 <section id="about">
   <div class="wrap">
     <div class="sh reveal">
-      <div class="sh-label">about</div>
+      <div class="sh-eyebrow">about</div>
       <h2>Who I Am</h2>
+      <span class="sh-num" aria-hidden="true">01</span>
     </div>
-    <div class="about-cols reveal">
+    <div class="about-grid reveal">
       <div class="about-text">
         <p>
           I hold a <strong>Licence in Software Engineering</strong> from Université Constantine 2 (Algeria)
@@ -323,14 +99,34 @@
         </p>
       </div>
       <div>
-        <div class="lang-list">
-          <div class="lang-row"><span class="lang-name">Arabic &amp; Tamazight</span><span class="lang-badge">native</span></div>
-          <div class="lang-row"><span class="lang-name">French</span><span class="lang-badge">C1 — TCF</span></div>
-          <div class="lang-row"><span class="lang-name">English</span><span class="lang-badge">B2 — TOEIC</span></div>
-          <div class="lang-row"><span class="lang-name">Russian</span><span class="lang-badge">learning</span></div>
-          <div class="lang-row"><span class="lang-name">Spanish</span><span class="lang-badge">learning</span></div>
+        <div class="lang-stack">
+          <div class="lang-item">
+            <span class="lang-dot"></span>
+            <span class="lang-name">Arabic &amp; Tamazight</span>
+            <span class="lang-level">native</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-dot"></span>
+            <span class="lang-name">French</span>
+            <span class="lang-level">C1 — TCF</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-dot"></span>
+            <span class="lang-name">English</span>
+            <span class="lang-level">B2 — TOEIC</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-dot"></span>
+            <span class="lang-name">Russian</span>
+            <span class="lang-level">learning</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-dot"></span>
+            <span class="lang-name">Spanish</span>
+            <span class="lang-level">learning</span>
+          </div>
         </div>
-        <div class="interests">
+        <div class="interests-block">
           <div class="interests-label">interests</div>
           <div class="pills">
             <span class="pill">♟ Chess</span>
@@ -350,57 +146,122 @@
 <section id="skills">
   <div class="wrap">
     <div class="sh reveal">
-      <div class="sh-label">skills</div>
+      <div class="sh-eyebrow">skills</div>
       <h2>Tech Stack</h2>
+      <span class="sh-num" aria-hidden="true">02</span>
     </div>
+
+    <!-- Proficiency bars -->
+    <div class="skill-bars reveal">
+      <div class="skill-bar-row">
+        <div class="skill-bar-meta">
+          <span class="skill-bar-name">Python</span>
+          <span class="skill-bar-pct">Advanced</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-level="88%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-meta">
+          <span class="skill-bar-name">Java</span>
+          <span class="skill-bar-pct">Advanced</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-level="82%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-meta">
+          <span class="skill-bar-name">Spring Boot / Backend</span>
+          <span class="skill-bar-pct">Advanced</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-level="78%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-meta">
+          <span class="skill-bar-name">TensorFlow / ML</span>
+          <span class="skill-bar-pct">Intermediate</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-level="70%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-meta">
+          <span class="skill-bar-name">SQL / Data</span>
+          <span class="skill-bar-pct">Intermediate</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-level="72%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-meta">
+          <span class="skill-bar-name">React / Frontend</span>
+          <span class="skill-bar-pct">Intermediate</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-level="62%"></div></div>
+      </div>
+    </div>
+
+    <!-- Category cards -->
     <div class="skills-grid">
-      <div class="skill-block reveal">
-        <div class="skill-block-title">languages</div>
+      <div class="skill-card reveal">
+        <div class="skill-cat"><span class="skill-cat-icon">⟨/⟩</span> languages</div>
         <div class="tags">
-          <span class="tag">Python</span><span class="tag">Java</span>
-          <span class="tag">JavaScript</span><span class="tag">SQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
           <span class="tag">x86 Assembly</span>
         </div>
       </div>
-      <div class="skill-block reveal">
-        <div class="skill-block-title">backend</div>
+      <div class="skill-card reveal">
+        <div class="skill-cat"><span class="skill-cat-icon">⚙</span> backend</div>
         <div class="tags">
-          <span class="tag">Spring Boot</span><span class="tag">Spring Security</span>
-          <span class="tag">Flask</span><span class="tag">REST APIs</span>
-          <span class="tag">JWT</span><span class="tag">JPA / Hibernate</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">Spring Security</span>
+          <span class="tag">Flask</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">JWT</span>
+          <span class="tag">JPA / Hibernate</span>
         </div>
       </div>
-      <div class="skill-block reveal">
-        <div class="skill-block-title">frontend</div>
+      <div class="skill-card reveal">
+        <div class="skill-cat"><span class="skill-cat-icon">◈</span> frontend</div>
         <div class="tags">
-          <span class="tag">React</span><span class="tag">Tailwind CSS</span>
-          <span class="tag">JavaScript</span><span class="tag">HTML / CSS</span>
-          <span class="tag">JavaFX</span><span class="tag">Streamlit</span>
+          <span class="tag">React</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML / CSS</span>
+          <span class="tag">JavaFX</span>
+          <span class="tag">Streamlit</span>
           <span class="tag">Axios</span>
         </div>
       </div>
-      <div class="skill-block reveal">
-        <div class="skill-block-title">ML / AI</div>
+      <div class="skill-card reveal">
+        <div class="skill-cat"><span class="skill-cat-icon">🧠</span> ML / AI</div>
         <div class="tags">
-          <span class="tag">TensorFlow</span><span class="tag">Keras</span>
-          <span class="tag">ResNet50</span><span class="tag">NumPy</span>
-          <span class="tag">Pillow</span><span class="tag">OpenAI API</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">Keras</span>
+          <span class="tag">ResNet50</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pillow</span>
+          <span class="tag">OpenAI API</span>
         </div>
       </div>
-      <div class="skill-block reveal">
-        <div class="skill-block-title">databases &amp; tools</div>
+      <div class="skill-card reveal">
+        <div class="skill-cat"><span class="skill-cat-icon">🗄</span> databases &amp; tools</div>
         <div class="tags">
-          <span class="tag">MySQL</span><span class="tag">Git</span>
-          <span class="tag">Maven</span><span class="tag">ZXing</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Git</span>
+          <span class="tag">Maven</span>
+          <span class="tag">ZXing</span>
           <span class="tag">Gmail SMTP</span>
         </div>
       </div>
-      <div class="skill-block reveal">
-        <div class="skill-block-title">concepts</div>
+      <div class="skill-card reveal">
+        <div class="skill-cat"><span class="skill-cat-icon">∑</span> concepts</div>
         <div class="tags">
-          <span class="tag">Concurrency</span><span class="tag">MVC Pattern</span>
-          <span class="tag">Compiler Design</span><span class="tag">A* Search</span>
-          <span class="tag">System Design</span><span class="tag">Role-Based Auth</span>
+          <span class="tag">Concurrency</span>
+          <span class="tag">MVC Pattern</span>
+          <span class="tag">Compiler Design</span>
+          <span class="tag">A* Search</span>
+          <span class="tag">System Design</span>
+          <span class="tag">Role-Based Auth</span>
         </div>
       </div>
     </div>
@@ -411,20 +272,24 @@
 <section id="projects">
   <div class="wrap">
     <div class="sh reveal">
-      <div class="sh-label">projects</div>
+      <div class="sh-eyebrow">projects</div>
       <h2>Things I've Built</h2>
+      <span class="sh-num" aria-hidden="true">03</span>
     </div>
 
-    <!-- Featured -->
+    <div class="proj-filters reveal">
+      <button class="filter-btn active" data-filter="ai">AI &amp; ML</button>
+      <button class="filter-btn" data-filter="data">Data</button>
+      <button class="filter-btn" data-filter="stack">Full-Stack</button>
+      <button class="filter-btn" data-filter="sys">Systems</button>
+    </div>
+
     <div class="projects-featured">
 
-      <div class="proj-card featured reveal">
-        <div class="proj-top">
-          <div class="proj-icon-link">
-            <span class="proj-icon">🏫</span>
-          </div>
-          <a href="https://github.com/thiziri-arour/creshe-enfant" target="_blank" class="proj-gh" title="GitHub">
-            <svg viewBox="0 0 24 24" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="proj-card featured reveal" data-cat="stack">
+        <div class="proj-head">
+          <a href="https://github.com/thiziri-arour/creshe-enfant" target="_blank" rel="noopener" class="proj-gh" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <div class="proj-name">Crèche Management System</div>
@@ -449,13 +314,10 @@
         </div>
       </div>
 
-      <div class="proj-card featured reveal">
-        <div class="proj-top">
-          <div class="proj-icon-link">
-            <span class="proj-icon">🧬</span>
-          </div>
-          <a href="https://github.com/thiziri-arour/Complex_Number_Compiler" target="_blank" class="proj-gh" title="GitHub">
-            <svg viewBox="0 0 24 24" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="proj-card featured reveal" data-cat="sys">
+        <div class="proj-head">
+          <a href="https://github.com/thiziri-arour/Complex_Number_Compiler" target="_blank" rel="noopener" class="proj-gh" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <div class="proj-name">Complex Number Compiler</div>
@@ -466,7 +328,7 @@
           <li>Full arithmetic: addition, subtraction, multiplication, division, power, negation</li>
           <li>Boolean expressions: ET, OU, NON, equality, ordering by modulus — with lazy evaluation</li>
           <li>Variables, assignment, conditionals (lorsque/autrement), loops (repeter/jusque)</li>
-          <li>break and continue support inside loops</li>
+          <li>Break and continue support inside loops</li>
           <li>MVaP bytecode generation with PUSHF for complex float pairs</li>
           <li>Operator precedence fully enforced in the grammar</li>
         </ul>
@@ -476,16 +338,14 @@
         </div>
       </div>
 
-    </div><!-- /featured -->
+    </div>
 
-    <!-- Other projects -->
     <div class="projects-other">
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <span class="proj-icon">🐾</span>
-          <a href="https://github.com/thiziri-arour/animal_classifier" target="_blank" class="proj-gh">
-            <svg viewBox="0 0 24 24" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="proj-card reveal" data-cat="ai">
+        <div class="proj-head">
+          <a href="https://github.com/thiziri-arour/animal_classifier" target="_blank" rel="noopener" class="proj-gh" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <div class="proj-name">Animal Species Classifier</div>
@@ -503,11 +363,10 @@
         </div>
       </div>
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <span class="proj-icon">⬇️</span>
-          <a href="https://github.com/thiziri-arour/Download-Manager" target="_blank" class="proj-gh">
-            <svg viewBox="0 0 24 24" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="proj-card reveal" data-cat="sys">
+        <div class="proj-head">
+          <a href="https://github.com/thiziri-arour/Download-Manager" target="_blank" rel="noopener" class="proj-gh" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <div class="proj-name">Concurrent Download Manager</div>
@@ -525,11 +384,10 @@
         </div>
       </div>
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <span class="proj-icon">🔢</span>
-          <a href="https://github.com/thiziri-arour/Sudoku-Solver-using-A-Algorithm" target="_blank" class="proj-gh">
-            <svg viewBox="0 0 24 24" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="proj-card reveal" data-cat="ai">
+        <div class="proj-head">
+          <a href="https://github.com/thiziri-arour/Sudoku-Solver-using-A-Algorithm" target="_blank" rel="noopener" class="proj-gh" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <div class="proj-name">Sudoku Solver — A* Search</div>
@@ -546,11 +404,10 @@
         </div>
       </div>
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <span class="proj-icon">🤖</span>
-          <a href="https://github.com/thiziri-arour/ai_chatbot_project" target="_blank" class="proj-gh">
-            <svg viewBox="0 0 24 24" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="proj-card reveal" data-cat="ai">
+        <div class="proj-head">
+          <a href="https://github.com/thiziri-arour/ai_chatbot_project" target="_blank" rel="noopener" class="proj-gh" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <div class="proj-name">AI Chatbot</div>
@@ -567,11 +424,10 @@
         </div>
       </div>
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <span class="proj-icon">⚙️</span>
-          <a href="https://github.com/thiziri-arour/Personnel-Registration-System-in-Assembly" target="_blank" class="proj-gh">
-            <svg viewBox="0 0 24 24" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="proj-card reveal" data-cat="sys">
+        <div class="proj-head">
+          <a href="https://github.com/thiziri-arour/Personnel-Registration-System-in-Assembly" target="_blank" rel="noopener" class="proj-gh" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.23-.01-2.24-3.01.55-3.79-.73-4.03-1.41-.14-.35-.72-1.41-1.23-1.7-.42-.22-1.02-.77-.01-.79.94-.01 1.62.87 1.85 1.23 1.08 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.77-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.3.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.31 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.3 0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <div class="proj-name">Personnel Registration (Assembly)</div>
@@ -588,10 +444,7 @@
         </div>
       </div>
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <span class="proj-icon">🔧</span>
-        </div>
+      <div class="proj-card reveal" data-cat="data">
         <div class="proj-name">MotoTrack — Repair Management App</div>
         <div class="proj-type">microsoft power platform · low-code · m365</div>
         <div class="proj-desc">A business application built on Microsoft Power Platform to manage equipment repair requests in a motoculture shop. Covers the full lifecycle of a repair — from submission to resolution — with automated notifications and a real-time analytics dashboard.</div>
@@ -610,7 +463,7 @@
         </div>
       </div>
 
-    </div><!-- /other -->
+    </div>
   </div>
 </section>
 
@@ -618,8 +471,9 @@
 <section id="education">
   <div class="wrap">
     <div class="sh reveal">
-      <div class="sh-label">education</div>
+      <div class="sh-eyebrow">education</div>
       <h2>Academic Background</h2>
+      <span class="sh-num" aria-hidden="true">04</span>
     </div>
     <div class="edu-grid">
       <div class="edu-card reveal">
@@ -648,11 +502,11 @@
 <section id="certifications">
   <div class="wrap">
     <div class="sh reveal">
-      <div class="sh-label">credentials</div>
+      <div class="sh-eyebrow">credentials</div>
       <h2>Certifications &amp; Diplomas</h2>
+      <span class="sh-num" aria-hidden="true">05</span>
     </div>
 
-    <!-- Academic Diploma -->
     <div class="cert-section-title reveal">Academic Diploma</div>
     <div class="diploma-card reveal">
       <div class="diploma-header">
@@ -661,80 +515,75 @@
           <div class="diploma-name">Diplôme de Licence — Informatique, Génie Logiciel</div>
           <div class="diploma-sub">Awarded June 04, 2024 · Domaine: Mathématiques et Informatique</div>
         </div>
-        <span class="diploma-open" onclick="openLb('assets/certificates/cert_licence.pdf','Diplôme de Licence — Informatique, Génie Logiciel · June 2024')" style="cursor:pointer;">PDF — view</span>
+        <span class="diploma-open" onclick="openLb('assets/certificates/cert_licence.pdf','Diplôme de Licence — Informatique, Génie Logiciel · June 2024')" role="button" tabindex="0">PDF — view</span>
       </div>
       <div class="diploma-note">Official certified translation — Université de Constantine 2, Abdelhamid Mehri · June 2024</div>
     </div>
 
-    <!-- Online Certificates -->
     <div class="cert-section-title reveal">Online Certificates</div>
+    <div class="cert-filters reveal">
+      <button class="filter-btn active" data-filter="ai">AI &amp; ML</button>
+      <button class="filter-btn" data-filter="data">Data</button>
+      <button class="filter-btn" data-filter="stack">Full-Stack</button>
+    </div>
     <div class="online-list reveal">
 
-      <div class="online-row" onclick="openLb('assets/certificates/cert_ibm.pdf','Develop Generative AI Applications: Get Started — IBM · Dec 2025')">
-        <span class="online-issuer-badge badge-ibm">IBM</span>
+      <div class="online-row" data-cat="ai" onclick="openLb('assets/certificates/cert_ibm.pdf','Develop Generative AI Applications: Get Started — IBM · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-ibm">IBM</span>
         <span class="online-name">Develop Generative AI Applications: Get Started</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_ai_agents.pdf','Develop Intelligent AI Agents with OpenAI — Edureka · Dec 2025')">
-        <span class="online-issuer-badge badge-edureka">Edureka</span>
+      <div class="online-row" data-cat="ai" onclick="openLb('assets/certificates/cert_ai_agents.pdf','Develop Intelligent AI Agents with OpenAI — Edureka · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-edureka">Edureka</span>
         <span class="online-name">Develop Intelligent AI Agents with OpenAI</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_duke_ml.pdf','Python Essentials for MLOps — Duke University · Dec 2025')">
-        <span class="online-issuer-badge badge-duke">Duke</span>
+      <div class="online-row" data-cat="ai" onclick="openLb('assets/certificates/cert_duke_ml.pdf','Python Essentials for MLOps — Duke University · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-duke">Duke</span>
         <span class="online-name">Python Essentials for MLOps</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_google_1.pdf','Foundations: Data, Data, Everywhere — Google · Dec 2025')">
-        <span class="online-issuer-badge badge-google">Google</span>
+      <div class="online-row" data-cat="data" onclick="openLb('assets/certificates/cert_google_1.pdf','Foundations: Data, Data, Everywhere — Google · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-google">Google</span>
         <span class="online-name">Foundations: Data, Data, Everywhere</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_google_2.pdf','Prepare Data for Exploration — Google · Dec 2025')">
-        <span class="online-issuer-badge badge-google">Google</span>
+      <div class="online-row" data-cat="data" onclick="openLb('assets/certificates/cert_google_2.pdf','Prepare Data for Exploration — Google · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-google">Google</span>
         <span class="online-name">Prepare Data for Exploration</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_google_3.pdf','Ask Questions to Make Data-Driven Decisions — Google · Dec 2025')">
-        <span class="online-issuer-badge badge-google">Google</span>
+      <div class="online-row" data-cat="data" onclick="openLb('assets/certificates/cert_google_3.pdf','Ask Questions to Make Data-Driven Decisions — Google · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-google">Google</span>
         <span class="online-name">Ask Questions to Make Data-Driven Decisions</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_pearson_unit1.pdf','Full-Stack React with Spring Boot: Unit 1 — Pearson · Dec 2025')">
-        <span class="online-issuer-badge badge-pearson">Pearson</span>
+      <div class="online-row" data-cat="stack" onclick="openLb('assets/certificates/cert_pearson_unit1.pdf','Full-Stack React with Spring Boot: Unit 1 — Pearson · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-pearson">Pearson</span>
         <span class="online-name">Full-Stack React with Spring Boot: Unit 1</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_pearson_unit2.pdf','Full-Stack React with Spring Boot: Unit 2 — Pearson · Dec 2025')">
-        <span class="online-issuer-badge badge-pearson">Pearson</span>
+      <div class="online-row" data-cat="stack" onclick="openLb('assets/certificates/cert_pearson_unit2.pdf','Full-Stack React with Spring Boot: Unit 2 — Pearson · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-pearson">Pearson</span>
         <span class="online-name">Full-Stack React with Spring Boot: Unit 2</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_pearson_unit3.pdf','Full-Stack React with Spring Boot: Unit 3 — Pearson · Dec 2025')">
-        <span class="online-issuer-badge badge-pearson">Pearson</span>
+      <div class="online-row" data-cat="stack" onclick="openLb('assets/certificates/cert_pearson_unit3.pdf','Full-Stack React with Spring Boot: Unit 3 — Pearson · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-pearson">Pearson</span>
         <span class="online-name">Full-Stack React with Spring Boot: Unit 3</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
       </div>
-
-      <div class="online-row" onclick="openLb('assets/certificates/cert_pearson_unit4.pdf','Full-Stack React with Spring Boot: Unit 4 — Pearson · Dec 2025')">
-        <span class="online-issuer-badge badge-pearson">Pearson</span>
+      <div class="online-row" data-cat="stack" onclick="openLb('assets/certificates/cert_pearson_unit4.pdf','Full-Stack React with Spring Boot: Unit 4 — Pearson · Dec 2025')" role="button" tabindex="0">
+        <span class="online-badge badge-pearson">Pearson</span>
         <span class="online-name">Full-Stack React with Spring Boot: Unit 4</span>
         <span class="online-date">Dec 2025</span>
         <span class="online-view">view PDF</span>
@@ -747,24 +596,25 @@
 <!-- CONNECT -->
 <section id="connect">
   <div class="wrap">
-    <div class="sh reveal" style="text-align:center;">
-      <div class="sh-label" style="justify-content:center;">contact</div>
+    <div class="sh centered reveal">
+      <div class="sh-eyebrow">contact</div>
       <h2>Let's Talk</h2>
+      <span class="sh-num" aria-hidden="true">06</span>
     </div>
     <div class="connect-inner reveal">
       <p>Open to internships, collaborations, and interesting problems. Feel free to reach out.</p>
       <div class="contact-grid">
         <a href="mailto:thiziriarour13@gmail.com" class="contact-link">
-          <span>✉</span> thiziriarour13@gmail.com
+          <span class="icon">✉</span> thiziriarour13@gmail.com
         </a>
-        <a href="https://www.linkedin.com/in/arour-thiziri-453876261/" target="_blank" class="contact-link">
-          <span>in</span> arour-thiziri
+        <a href="https://www.linkedin.com/in/arour-thiziri-453876261/" target="_blank" rel="noopener" class="contact-link">
+          <span class="icon">in</span> arour-thiziri
         </a>
-        <a href="https://github.com/thiziri-arour" target="_blank" class="contact-link">
-          <span>⌥</span> thiziri-arour
+        <a href="https://github.com/thiziri-arour" target="_blank" rel="noopener" class="contact-link">
+          <span class="icon">⌥</span> thiziri-arour
         </a>
         <a href="tel:+33744212417" class="contact-link">
-          <span>☏</span> +33 7 44 21 24 17
+          <span class="icon">☏</span> +33 7 44 21 24 17
         </a>
       </div>
     </div>
@@ -772,7 +622,9 @@
 </section>
 
 <footer>
-  <div class="wrap">thiziri arour · aubière, france · 2025</div>
+  <div class="wrap">
+    <span class="footer-line">thiziri arour · aubière, france · 2025</span>
+  </div>
 </footer>
 
 <!-- LIGHTBOX -->
@@ -781,59 +633,14 @@
     <div class="lb-bar">
       <span class="lb-title" id="lb-title"></span>
       <div class="lb-actions">
-        <a class="lb-ext" id="lb-ext" href="#" target="_blank">↗ open in new tab</a>
-        <button class="lb-close" onclick="closeLb()">✕</button>
+        <a class="lb-ext" id="lb-ext" href="#" target="_blank" rel="noopener">↗ open in new tab</a>
+        <button class="lb-close" onclick="closeLb()" aria-label="Close">✕</button>
       </div>
     </div>
     <embed class="lb-embed" id="lb-embed" src="" type="application/pdf" />
   </div>
 </div>
 
-<script>
-  // nav scroll
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30));
-
-  // typing
-  const roles = ['Full-Stack Developer_','Machine Learning Engineer_','Algorithms & Systems_','Open to Opportunities_'];
-  let ri = 0, ci = 0, del = false;
-  const el = document.querySelector('#typed-role');
-  function tick() {
-    const cur = roles[ri];
-    el.innerHTML = (del ? cur.slice(0, --ci) : cur.slice(0, ++ci))
-      .replace(/_$/, '<span class="cursor"></span>');
-    if (!del && ci === cur.length) { del = true; setTimeout(tick, 1800); return; }
-    if (del && ci === 0) { del = false; ri = (ri+1) % roles.length; }
-    setTimeout(tick, del ? 40 : 75);
-  }
-  tick();
-
-  // scroll reveal
-  const io = new IntersectionObserver(entries => {
-    entries.forEach((e,i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('on'), i * 60);
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // lightbox
-  function openLb(pdf, title) {
-    document.getElementById('lb-title').textContent = title;
-    document.getElementById('lb-ext').href = pdf;
-    document.getElementById('lb-embed').src = pdf;
-    document.getElementById('lb').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLb() {
-    document.getElementById('lb-embed').src = '';
-    document.getElementById('lb').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closeLbBg(e) { if (e.target.id === 'lb') closeLb(); }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
-</script>
+<script src="script.js" defer></script>
 </body>
 </html>
