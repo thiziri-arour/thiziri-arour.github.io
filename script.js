@@ -49,19 +49,27 @@ if (barsSection) {
   barObserver.observe(barsSection);
 }
 
-document.querySelectorAll('.proj-filters .filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const cat = btn.dataset.filter;
-    document.querySelectorAll('.proj-filters .filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.proj-card').forEach(card => {
-      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
-    });
-    const featured = document.querySelector('.projects-featured');
+function applyProjFilter(cat) {
+  document.querySelectorAll('.proj-filters .filter-btn').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.querySelector(`.proj-filters .filter-btn[data-filter="${cat}"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+  document.querySelectorAll('.proj-card').forEach(card => {
+    const visible = card.dataset.cat === cat;
+    card.style.display = visible ? 'flex' : 'none';
+    if (visible) card.classList.add('on');
+  });
+  const featured = document.querySelector('.projects-featured');
+  if (featured) {
     const anyVisible = Array.from(featured.children).some(c => c.style.display !== 'none');
     featured.style.marginBottom = anyVisible ? '' : '0';
-  });
+  }
+}
+
+document.querySelectorAll('.proj-filters .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyProjFilter(btn.dataset.filter));
 });
+
+applyProjFilter('ai');
 
 function applyCertFilter(cat) {
   document.querySelectorAll('.online-row').forEach(row => {
